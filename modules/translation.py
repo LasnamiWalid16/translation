@@ -170,8 +170,10 @@ def view_all_trasnlations():
         result_inner = pd.merge(translations_df, clients_df, left_on='client_id', right_on='_id', how='inner')
         result_inner = result_inner[['full_name','phone','work_status','payment_status','discount','total_without_discount'
                                      ,'total','rest','payment','created_at']]
-        result_inner['created_at'] = pd.to_datetime(result_inner['created_at'])
-        result_inner['created_at'] = result_inner['created_at'].dt.date
+        result_inner['created_at'] = pd.to_datetime(result_inner['created_at'], format="%Y-%m-%dT%H:%M:%S.%f", errors='coerce')
+
+
+        #result_inner['created_at'] = result_inner['created_at'].dt.date
         
         # Sidebar with select box for payment status
         selected_work_status = st.sidebar.selectbox('Select work_status', result_inner['work_status'].unique())
@@ -180,7 +182,7 @@ def view_all_trasnlations():
         filtered_df = result_inner[(result_inner['work_status'] == selected_work_status) & (result_inner['payment_status'] == selected_payment_status) ]
         #filtered_df = result_inner[result_inner['payment_status'] == selected_payment_status]
         # Display the filtered DataFrame
-        st.write('Filtered DataFrame:', filtered_df)
+        st.write(filtered_df)
         
 
     else:
@@ -240,8 +242,9 @@ def update_trasnlation():
         result_inner = pd.merge(translations_df, clients_df, left_on='client_id', right_on='_id', how='inner')
         result_inner = result_inner[['id','full_name','phone','work_status','payment_status','discount','total_without_discount'
                                      ,'total','rest','payment','created_at']]
-        result_inner['created_at'] = pd.to_datetime(result_inner['created_at'])
-        result_inner['created_at'] = result_inner['created_at'].dt.date
+        #result_inner['created_at'] = pd.to_datetime(result_inner['created_at'])
+        result_inner['created_at'] = pd.to_datetime(result_inner['created_at'], format="%Y-%m-%dT%H:%M:%S.%f", errors='coerce')
+        #result_inner['created_at'] = result_inner['created_at'].dt.date
         
         selected_client = st.sidebar.selectbox('Select Client', result_inner['full_name'].unique())
         selected_client_data = result_inner[result_inner['full_name'] == selected_client].iloc[0]
