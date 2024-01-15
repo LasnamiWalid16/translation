@@ -55,18 +55,17 @@ def view_all_clients():
                     "last_name": client_dict.get("last_name", ""),
                     "first_name": client_dict.get("first_name", ""),
                     "phone": client_dict.get("phone", ""),
-                    "email": client_dict.get("email", ""),
                 })
 
         # Display the clients in a DataFrame
         clients_df = pd.DataFrame(clients_data)
              
-        # Sidebar with select box for payment status
-        clients_df["full_name"] = clients_df["last_name"] + " " + clients_df["first_name"]
-        selected_client = st.sidebar.selectbox('Select Payment Status', clients_df["full_name"].unique())
-        filtered_df = clients_df[clients_df['full_name'] == selected_client ]
+        # #Sidebar with select box for payment status
+        # clients_df["full_name"] = clients_df["last_name"] + " " + clients_df["first_name"]
+        # selected_client = st.sidebar.selectbox('Select Payment Status', clients_df["full_name"].unique())
+        # filtered_df = clients_df[clients_df['full_name'] == selected_client ]
   
-        st.dataframe(filtered_df)
+        st.dataframe(clients_df)
 
     else:
         st.error(f"Error: Unable to retrieve clients. Status Code: {response.status_code}")
