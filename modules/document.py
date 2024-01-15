@@ -3,6 +3,8 @@ import pandas as pd
 import requests
 from os import environ as env
 
+
+
 FASTAPI_URL = st.secrets.FASTAPI_URL.FASTAPI_URL 
 
 # Function to add a new document

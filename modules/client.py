@@ -11,7 +11,6 @@ def add_new_client():
         last_name = st.text_input(label="Last Name*")
         first_name = st.text_input(label="First Name")
         phone = st.text_input(label="phone number*")
-        email = st.text_input(label="Email")
 
         st.markdown("**required*")
 
@@ -26,7 +25,7 @@ def add_new_client():
                     "first_name": first_name,
                     "last_name": last_name,
                     "phone": phone,
-                    "email": email,
+                    "email": '0549318757',
                 }
 
                 response = requests.post(FASTAPI_URL + "/client/", json=client_data)
