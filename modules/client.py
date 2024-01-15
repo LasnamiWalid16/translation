@@ -25,7 +25,7 @@ def add_new_client():
                     "first_name": first_name,
                     "last_name": last_name,
                     "phone": phone,
-                    "email": '0549318757',
+                    "email": 'lasnami@gmail.com',
                 }
 
                 response = requests.post(FASTAPI_URL + "/client/", json=client_data)
