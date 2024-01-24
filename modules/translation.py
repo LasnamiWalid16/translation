@@ -237,7 +237,7 @@ def update_trasnlation():
 
         # Display the translations in a DataFrame
         translations_df = pd.DataFrame(translations_data)
-        
+        translations_df = translations_df[(translations_df['payment_status']=='not_yet') and (translations_df['work_status']=='not_yet')]
         #join translations_df with clients_df
         result_inner = pd.merge(translations_df, clients_df, left_on='client_id', right_on='_id', how='inner')
         result_inner = result_inner[['id','full_name','phone','work_status','payment_status','discount','total_without_discount'
