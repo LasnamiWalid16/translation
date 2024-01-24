@@ -11,7 +11,6 @@ def add_new_client():
         last_name = st.text_input(label="Last Name*")
         first_name = st.text_input(label="First Name")
         phone = st.text_input(label="phone number*")
-        email = st.text_input(label="Email")
 
         st.markdown("**required*")
 
@@ -26,7 +25,7 @@ def add_new_client():
                     "first_name": first_name,
                     "last_name": last_name,
                     "phone": phone,
-                    "email": email,
+                    "email": 'lasnami@gmail.com',
                 }
 
                 response = requests.post(FASTAPI_URL + "/client/", json=client_data)
@@ -56,18 +55,17 @@ def view_all_clients():
                     "last_name": client_dict.get("last_name", ""),
                     "first_name": client_dict.get("first_name", ""),
                     "phone": client_dict.get("phone", ""),
-                    "email": client_dict.get("email", ""),
                 })
 
         # Display the clients in a DataFrame
         clients_df = pd.DataFrame(clients_data)
              
-        # Sidebar with select box for payment status
-        clients_df["full_name"] = clients_df["last_name"] + " " + clients_df["first_name"]
-        selected_client = st.sidebar.selectbox('Select Payment Status', clients_df["full_name"].unique())
-        filtered_df = clients_df[clients_df['full_name'] == selected_client ]
+        # #Sidebar with select box for payment status
+        # clients_df["full_name"] = clients_df["last_name"] + " " + clients_df["first_name"]
+        # selected_client = st.sidebar.selectbox('Select Payment Status', clients_df["full_name"].unique())
+        # filtered_df = clients_df[clients_df['full_name'] == selected_client ]
   
-        st.dataframe(filtered_df)
+        st.dataframe(clients_df)
 
     else:
         st.error(f"Error: Unable to retrieve clients. Status Code: {response.status_code}")
