@@ -1,8 +1,7 @@
 import streamlit as st
 import pandas as pd
 from pymongo import MongoClient
-from datetime import datetime, timedelta
-
+from datetime import datetime
 
 def stats():
     # Load MongoDB connection details from Streamlit secrets
@@ -10,7 +9,6 @@ def stats():
 
     # Connect to MongoDB
     client = MongoClient(MONGO_DETAILS)
-
     db = client.translation
 
     # Specify the fields you want to project
@@ -32,12 +30,24 @@ def stats():
     # Calculate and display total and rest
     total_sum = translations_df['total'].sum()
     rest_sum = translations_df['rest'].sum()
-    st.write(f"Total: {total_sum}")
-    st.write(f"Rest: {rest_sum}")
 
     # Calculate today's total and payment
     today = datetime.now().strftime('%Y-%m-%d')
-    today_total = translations_df[translations_df['created_at'].dt.strftime('%Y-%m-%d') == today]['total'].sum()
-    today_payment = translations_df[translations_df['created_at'].dt.strftime('%Y-%m-%d') == today]['payment'].sum()
-    st.write(f"Today's Total: {today_total}")
-    st.write(f"Today's Payment: {today_payment}")
+    today_transactions = translations_df[translations_df['created_at'].dt.strftime('%Y-%m-%d') == today]
+    today_total = today_transactions['total'].sum()
+    today_payment = today_transactions['payment'].sum()
+
+    # Create a pandas DataFrame for display
+    data = {
+        'Total': [total_sum],
+        'Rest': [rest_sum],
+        'TodayTotal': [today_total],
+        'TodayPayment': [today_payment]
+    }
+    result_df = pd.DataFrame(data)
+
+    # Display the DataFrame
+    st.write(result_df)
+
+# Run the stats function
+stats()
