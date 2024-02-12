@@ -57,7 +57,8 @@ def add_new_translation():
     
     
     with st.form(key="translation_form"):
-        languages = ['ARB->FR','ARB->ANG','FR->ARB','FR->ANG','ANG->ARB','ANG->FR']
+        languages = ['ARB->FR','ARB->ANG','ARB->DEU','FR->ARB','FR->ANG','FR->DEU','ANG->ARB','ANG->FR','ANG->DEU',
+                     'DEU->ARB','DEU->FR','DEU->ANG']
         forms_dict = {}
         for i in range(n_lines):
             st.markdown(f"## Document {i + 1}")
