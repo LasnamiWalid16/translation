@@ -9,7 +9,7 @@ FASTAPI_URL = st.secrets.FASTAPI_URL.FASTAPI_URL
 
 # Function to add a new document
 def add_new_document():
-    st.title('Add New Docuemnt')
+    st.title('Add New Document')
     with st.form(key="vendor_form"):
         name = st.text_input(label="Document Name*")
         description = st.text_input(label="Decription")
