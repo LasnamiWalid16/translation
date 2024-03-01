@@ -270,7 +270,7 @@ def update_trasnlation():
                     "payment_status" : 'Done' if selected_client_data['payment'] + new_payment == selected_client_data['total'] else selected_client_data['payment_status'] ,
                     "rest": selected_client_data['total'] - (selected_client_data['payment'] + new_payment),
                     "payment": selected_client_data['payment'] + new_payment,
-                    "payments":new_payment
+                    "payments":[{"price":new_payment, "created_at": None}]
                 }
                 id_translation = selected_client_data['id']
                 response_translation = requests.put(FASTAPI_URL + f"/translation/{id_translation}", json=new_translation_data)
