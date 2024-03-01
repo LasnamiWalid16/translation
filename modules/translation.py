@@ -100,6 +100,7 @@ def add_new_translation():
                         }
                         for i in range(n_lines)
                     ],
+                    "payments":[]
                 }
                 total_without_discount = sum(doc['price'] * doc['nb_copies'] for doc in translation_data['documents'])
                 total = total_without_discount - (translation_data['discount'] * total_without_discount / 100)
