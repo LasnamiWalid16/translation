@@ -269,7 +269,7 @@ def update_trasnlation():
                     "work_status" : new_work_status,
                     "payment_status" : 'Done' if selected_client_data['payment'] + new_payment == selected_client_data['total'] else selected_client_data['payment_status'] ,
                     "rest": selected_client_data['total'] - (selected_client_data['payment'] + new_payment),
-                    "payment": selected_client_data['payment'] + new_payment,
+                    "payment":  new_payment,
                     
                 }
                 id_translation = selected_client_data['id']
