@@ -48,6 +48,12 @@ def stats():
 
     # Display the DataFrame
     st.write(result_df)
+    
+    # Calculate monthly totals
+    translations_df['month'] = translations_df['created_at'].dt.to_period('M')
+    monthly_totals = translations_df.groupby('month')['total'].sum().reset_index()
+    st.write("Monthly Totals")
+    st.write(monthly_totals)
 
 # Run the stats function
 stats()
