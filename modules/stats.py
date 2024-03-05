@@ -47,6 +47,7 @@ def stats():
     result_df = pd.DataFrame(data)
 
     # Display the DataFrame
+    st.write("Todays stats")
     st.write(result_df)
     
     # Calculate monthly totals
