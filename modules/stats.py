@@ -95,7 +95,7 @@ def daily_stats():
     result_df = result_df.sort_values(by='date', ascending=False)
 
     
-    st.title("Daily Paymentss")
+    st.title("Daily Payments")
     st.write(result_df)
 
     # Group by month
